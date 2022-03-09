@@ -21,6 +21,7 @@
 #define SHM_FLAG 0
 #define MAX_ATTEMPTS 100
 #define SLEEP_TIME 0.1
+#define KEY_ML 16535
 
 /*
 * FUNCTION      : getML()
