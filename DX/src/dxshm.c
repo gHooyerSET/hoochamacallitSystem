@@ -10,7 +10,9 @@
 #include <sys/ipc.h>
 #include <sys/types.h>
 #include <sys/shm.h>
+#include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "../../Common/inc/mlstruct.h"
 #include "../../Common/inc/common.h"
@@ -20,6 +22,9 @@
 #define SHM_FLAG 0
 #define MAX_ATTEMPTS 100
 #define SLEEP_TIME 0.1
+
+#define WOD_MIN 0
+#define WOD_MAX 20
 
 /*
 * FUNCTION      : getML()
@@ -81,4 +86,87 @@ MasterList* getML()
     }
 
     return mlptr;
+}
+
+void wheelOfDestruction(MasterList* mlptr)
+{
+    int actionID = -1;
+    // First, let's check for the existence of the msg queue
+    key_t msgKey = ftok(MSG_QUEUE_PATH,IPC_ID);
+    
+    
+        srand(time(NULL));
+        // Seed the random number generator
+        while(1)
+        {
+            // Then use the msgKey to check for the existance of the queue
+            if (msgget(msgKey,0) == MSG_QUEUE_NOT_FOUND)
+            {
+                // Exit if it's not available
+                break;
+            }
+            // Generate the action
+            actionID = (rand() % (WOD_MAX - WOD_MIN) + WOD_MIN);
+            // Then run the action
+            wodAction(actionID, mlptr);
+        }
+    
+}
+
+void wodAction(int actionID, MasterList* mlptr)
+{
+    DCInfo* dc = NULL;
+    switch(actionID)
+    {
+        //Do nothing
+        case 0:
+        case 8:
+        case 19:
+            break;
+        // Kill DC-01
+        case 1:
+        case 4:
+        case 11:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC01]);
+            //Then try to kill the process
+            killDC(dc);
+            break;
+        //Kill DC-02
+        case 3:
+        case 6:
+        case 13:
+            break;
+        //Kill DC-03
+        case 2:
+        case 5:
+        case 15:
+            break;
+        //Kill DC-04
+        case 7:
+            break;
+        //Kill DC-05
+        case 9:
+            break;
+        //Kill DC-06
+        case 12:
+            break;
+        //Kill DC-07
+        case 14:
+            break;
+        //Kill DC-08
+        case 16:
+            break;
+        //Kill DC-09
+        case 18:
+            break;
+        //Kill DC-10
+        case 20:
+            break;        
+    }
+}
+
+void killDC(DCInfo* dc)
+{
+
 }

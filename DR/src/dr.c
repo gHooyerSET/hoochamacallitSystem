@@ -13,15 +13,15 @@
 #include <stdio.h>
 
 /* CONSTANTS */
-SLEEP_TIME 15
+#define SLEEP_TIME 15
 
 int main()
 {
-    int queueID = ;
+    int queueID = 0;
+    MasterList* mlptr = NULL;
 
 
-
-    MasterList* mlptr = getML();
+    mlptr = getML();
     if(mlptr != NULL)
     {
 
