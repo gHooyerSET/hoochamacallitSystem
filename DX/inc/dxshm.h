@@ -11,3 +11,6 @@
 
 /* PROTOTYPES */
 MasterList* getML();
+void wheelOfDestruction(MasterList* mlptr);
+void wodAction(int actionID, MasterList* mlptr);
+void killDC(DCInfo* dc);

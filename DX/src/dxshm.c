@@ -7,6 +7,7 @@
 */
 
 /* DEPENDENCIES */
+#include <signal.h>
 #include <sys/ipc.h>
 #include <sys/types.h>
 #include <sys/shm.h>
@@ -88,6 +89,13 @@ MasterList* getML()
     return mlptr;
 }
 
+/*
+* FUNCTION      : wheelOfDestruction(MasterList* mlptr)
+* DESCRIPTION   : Picks a random action from the WoD and executes it.
+* PARAMETERS    : MasterList* | mlptr | A pointer to the shared memory
+*                 for the master list.
+* RETURNS       : N/A
+*/
 void wheelOfDestruction(MasterList* mlptr)
 {
     int actionID = -1;
@@ -113,6 +121,14 @@ void wheelOfDestruction(MasterList* mlptr)
     
 }
 
+/*
+* FUNCTION      : wheelOfDestruction(MasterList* mlptr)
+* DESCRIPTION   : Picks a random action from the WoD and executes it.
+* PARAMETERS    : MasterList* | mlptr | A pointer to the shared memory
+*                 for the master list.
+*                 int | actionID | The ID for the action
+* RETURNS       : N/A
+*/
 void wodAction(int actionID, MasterList* mlptr)
 {
     DCInfo* dc = NULL;
@@ -136,37 +152,88 @@ void wodAction(int actionID, MasterList* mlptr)
         case 3:
         case 6:
         case 13:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC02]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-03
         case 2:
         case 5:
         case 15:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC03]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-04
         case 7:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC04]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-05
         case 9:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC05]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-06
         case 12:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC06]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-07
         case 14:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC07]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-08
         case 16:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC08]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-09
         case 18:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC09]);
+            //Then try to kill the process
+            killDC(dc);
             break;
         //Kill DC-10
         case 20:
+            //Get a reference to the DC
+            dc = &(mlptr->dc[DC10]);
+            //Then try to kill the process
+            killDC(dc);
             break;        
     }
 }
 
+/*
+* FUNCTION      : killDC(DCInfo* dc)
+* DESCRIPTION   : Kills a DC if possible using the DCInfo
+* PARAMETERS    : DCInfo* | dc | A pointer to the DC based on the WoD action
+* RETURNS       : N/A
+*/
 void killDC(DCInfo* dc)
 {
-
+    //Check if the DC was in the list
+    if (dc != NULL)
+    {
+        //Then check if we're good to kill the process
+        if(kill(dc->dcProcessID,0))
+        {
+            // If valid, we can kill the process
+            kill(dc->dcProcessID,SIGKILL);
+        }
+    }
 }

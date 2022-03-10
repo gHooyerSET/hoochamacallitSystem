@@ -25,12 +25,20 @@ int main()
 	{
 		// First, let's sleep for a random length of time
 		randSleep();
-		
+		// Then we can start the wheel of destruction
+		wheelOfDestruction(mlptr);
 	}
 
 	return 0;
 }
 
+/*
+* FUNCTION      : randSleep()
+* DESCRIPTION   : Sleeps the system for a random amount of time
+*				  between SLEEP_MIN and SLEEP_MAX in seconds.  
+* PARAMETERS    : N/A
+* RETURNS       : N/A
+*/
 void randSleep()
 {
 	// Step 1: Seed the RNG
