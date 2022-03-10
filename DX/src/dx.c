@@ -12,9 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #define SLEEP_MIN 10
 #define SLEEP_MAX 30
+
+void randSleep();
 
 int main()
 {
@@ -29,6 +32,10 @@ int main()
 		wheelOfDestruction(mlptr);
 	}
 
+	if(DEBUG)
+	{
+		printf("Exiting...\n");
+	}
 	return 0;
 }
 
