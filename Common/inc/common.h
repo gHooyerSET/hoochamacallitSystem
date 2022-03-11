@@ -26,6 +26,13 @@
 typedef struct 
 {
     long msgType;
+    int status;
     pid_t pid;
 } msg;
+
+typedef struct 
+{
+    int logID;
+    char* logMsg;
+} logEntry;
 

@@ -11,9 +11,9 @@
 #include "./common.h"
 
 /* CONSTANTS */
-#define LOG_PATH_DC "../tmp/dataCreator.log"
-#define LOG_PATH_DM "../tmp/dataMonitor.log"
-#define LOG_PATH_DX "../tmp/dataCorruptor.log"
+#define LOG_PATH_DC "/tmp/dataCreator.log"
+#define LOG_PATH_DM "/tmp/dataMonitor.log"
+#define LOG_PATH_DX "/tmp/dataCorruptor.log"
 #define BUFFER_SIZE 128
 
 /*

@@ -1,16 +1,22 @@
 #include "../inc/dcmsg.h"
+#include <unistd.h>
+#include <stdio.h>
+#include "../../Common/inc/common.h"
 
 int main()
 {
-	// Check for message queue
-        // If it doesn't exist, sleep for 10s
-        // Then we need to try again
+    // Initialize the msgQueueId variable
+	int msgQueueID = MSG_QUEUE_NOT_FOUND;
     
-    // Once attached to the message queue, send OK message
-        // After that, send random message
-        // w/ random delay between 10-30s
+    // Get the queue ID
+    msgQueueID = getMsgQueue();
 
-        // If random message == status # 6,
-        // then exit
+    // Once attached to the message queue, send OK message
+    sendOKMsg(msgQueueID);
+
+    // Then start sending random messages (will exit on Offline being sent)
+    sendRandMsgStart(msgQueueID);
     
+    // Exit
+    return 0;
 }
