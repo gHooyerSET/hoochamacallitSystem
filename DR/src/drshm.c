@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../../Common/inc/mlstruct.h"
-#include "../../Common/inc/common.h"
 #include "../../Common/inc/logger.h"
 
 /* CONSTANTS */
@@ -47,7 +46,7 @@ MasterList* getML()
         {
             mlptr = (MasterList *)shmat(shmid,NULL,SHM_FLAG);
             
-            if(DEBUG == 1)
+            if(mlptr == NULL)
             {
                 logError("Master list memory block creation failure");
                 printf("mlptr = %lX\n",(long)mlptr);

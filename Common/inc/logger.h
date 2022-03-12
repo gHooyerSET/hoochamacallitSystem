@@ -12,23 +12,13 @@
 #include "./common.h"
 
 /* CONSTANTS */
-#define LOG_PATH_DC "/tmp/dataCreator.log"
-#define LOG_PATH_DM "/tmp/dataMonitor.log"
-#define LOG_PATH_DX "/tmp/dataCorruptor.log"
-#define LOG_PATH_ERROR "/tmp/error.log"
+#define LOG_PATH_DC "../../tmp/dataCreator.log"
+#define LOG_PATH_DM "../../tmp/dataMonitor.log"
+#define LOG_PATH_DX "../../tmp/dataCorruptor.log"
+#define LOG_PATH_ERROR "../../tmp/error.log"
 #define MSG_BUFFER_SIZE 128
 #define MSG_STATUS_BUFFER_SIZE 64
 #define MAX_STATUS 7
-
-/* Definitions */
-typedef struct {
-    char discription[MAX_STATUS][MSG_STATUS_BUFFER_SIZE]
-    {
-        "Everything is OKAY", "Hydraulic Pressure Failure", "Safety Button Failure", 
-        "No Raw Material in the Process", "Operating Temperature Out of Range", "Operator Error", 
-        "Machine is Off-line"
-    };
-}MsgStatus;
 
 /*
 * FUNCTION      : logError()
@@ -36,9 +26,8 @@ typedef struct {
 * PARAMETERS    : char* eventMsg | Event message string
 * RETURNS       : NA
 */
-void logError(const char* eventMsg)
+static void logError(const char* eventMsg)
 {
-    MsgStatus msgStatus;
     char logMsg[MSG_BUFFER_SIZE];
 
     time_t time_ptr;
@@ -66,9 +55,14 @@ void logError(const char* eventMsg)
 * PARAMETERS    : msg msgSent | Message info
 * RETURNS       : NA
 */
-void logDC(msg msgSent)
+static void logDC(msg msgSent)
 {
-    MsgStatus msgStatus;
+    const char* discription[] = {
+        "Everything is OKAY", "Hydraulic Pressure Failure", "Safety Button Failure", 
+        "No Raw Material in the Process", "Operating Temperature Out of Range", "Operator Error", 
+        "Machine is Off-line"
+    };
+
     char logMsg[MSG_BUFFER_SIZE];
 
     time_t time_ptr;
@@ -76,7 +70,7 @@ void logDC(msg msgSent)
 
     char* logTime = asctime(localtime(&time_ptr));
     
-    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC [%d] - MSG SENT - Status %d (%s)", logTime, msgSent.pid, msgSent.status, msgStatus.discription[msgSent.status]);
+    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC [%d] - MSG SENT - Status %d (%s)", logTime, msgSent.pid, msgSent.status, discription[msgSent.status]);
 
     // Write to file
     FILE* fp;
@@ -97,9 +91,14 @@ void logDC(msg msgSent)
 *               : char* eventMsg | Event message string
 * RETURNS       : NA
 */
-void logDR(msg msgSent, const char* eventMsg, const char* eventType)
+static void logDR(msg msgSent, const char* eventMsg, const char* eventType)
 {
-    MsgStatus msgStatus;
+    const char* discription[] = {
+        "Everything is OKAY", "Hydraulic Pressure Failure", "Safety Button Failure", 
+        "No Raw Material in the Process", "Operating Temperature Out of Range", "Operator Error", 
+        "Machine is Off-line"
+    };
+
     char logMsg[MSG_BUFFER_SIZE];
 
     time_t time_ptr;
@@ -107,7 +106,7 @@ void logDR(msg msgSent, const char* eventMsg, const char* eventType)
 
     char* logTime = asctime(localtime(&time_ptr));
     
-    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC-[%2d] [%d] %s - %s - Status %d (%s)", logTime, msgSent.status, msgSent.pid, eventMsg, eventType, msgSent.status, msgStatus.discription[msgSent.status]);
+    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC-[%2d] [%d] %s - %s - Status %d (%s)", logTime, msgSent.status, msgSent.pid, eventMsg, eventType, msgSent.status, discription[msgSent.status]);
     
     // Write to file
     FILE* fp;
@@ -127,9 +126,8 @@ void logDR(msg msgSent, const char* eventMsg, const char* eventType)
 * PARAMETERS    : NA
 * RETURNS       : NA
 */
-void logDRTerminate()
+static void logDRTerminate()
 {
-    MsgStatus msgStatus;
     char logMsg[MSG_BUFFER_SIZE];
 
     time_t time_ptr;

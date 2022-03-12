@@ -33,6 +33,7 @@ int getMsgQueue()
                 if (DEBUG)
                 {
                     printf("Message Queue Not Found\nSleeping for %d(s)\n", SLEEP_TIME);
+                    fflush (stdout);
                 }
                 // Otherwise, we sleep for 10 s
                 sleep(SLEEP_TIME);
@@ -60,11 +61,20 @@ void sendOKMsg(int msgQueueID)
 
     msgSize = getMsgSize();
 
-    if (!msgsnd(msgQueueID, &m, msgSize, 0))
+    if (!msgsnd(msgQueueID, (void *)&m, msgSize, 0))
     {
         if (DEBUG)
         {
             printf("OK Message failed to send.\n");
+            fflush (stdout);
+        }
+    }
+    else
+    {
+        if (DEBUG)
+        {
+            printf("OK Message sent.\n");
+            fflush (stdout);
         }
     }
 }
@@ -90,7 +100,7 @@ void sendRandMsgStart(int msgQueueID)
         // Set the message status
         m.status = status;
         // Attempt to send the message to the queue
-        if (!msgsnd(msgQueueID, &m, msgSize, 0))
+        if (!msgsnd(msgQueueID, (void *)&m, msgSize, 0))
         {
             if (DEBUG)
             {
@@ -100,6 +110,10 @@ void sendRandMsgStart(int msgQueueID)
         // If the offline message was sent, break the loop.
         if (status == MSG_MCHN_OFFLN)
         {
+            if (DEBUG)
+            {
+                printf("random message sent.\n");
+            }
             break;
         }
     }

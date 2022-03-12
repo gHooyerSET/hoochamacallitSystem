@@ -9,6 +9,7 @@
 /* DEPENDENCIES */
 #include <sys/types.h>
 #include <sys/ipc.h> 
+#include <sys/msg.h>
 #include "../../Common/inc/logger.h"
 
 /* CONSTANTS */
@@ -45,8 +46,18 @@ int get_mid(key_t message_key)
     int mid = -1;
 
     // If mid DNE create one
-    if(mid = msgget(message_key, 0) == -1)
+    if((mid = msgget(message_key, 0)) == -1)
     {
+        mid = msgget (message_key, IPC_CREAT | 0660); 
+        if (mid == -1) 
+        { 
+            logError("mid creation error");
+        } 
+    }
+    else
+    {
+        // Delete and create one
+        msgctl (mid, IPC_RMID, NULL);
         mid = msgget (message_key, IPC_CREAT | 0660); 
         if (mid == -1) 
         { 

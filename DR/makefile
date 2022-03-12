@@ -6,17 +6,20 @@
 
 
 # FINAL BINARY Target
-./bin/dr : ./obj/dr.o ./obj/drshm.o
-	cc ./obj/dr.o ./obj/drshm.o -o ./bin/dr
+./bin/dr : ./obj/dr.o ./obj/drshm.o ./obj/drmsg.o
+	cc ./obj/dr.o ./obj/drshm.o ./obj/drmsg.o -o ./bin/dr
 #
 # =======================================================
 #                     Dependencies
 # =======================================================                     
-./obj/dr.o : ./src/dr.c ./inc/drshm.h
+./obj/dr.o : ./src/dr.c ./inc/drshm.h ./inc/drmsg.h ../Common/inc/logger.h
 	cc -c ./src/dr.c -o ./obj/dr.o
 
-./obj/drshm.o : ./src/drshm.c ./inc/drshm.h
+./obj/drshm.o : ./src/drshm.c ./inc/drshm.h ../Common/inc/logger.h ../Common/inc/mlstruct.h
 	cc -c ./src/drshm.c -o ./obj/drshm.o
+	
+./obj/drmsg.o : ./src/drmsg.c ./inc/drmsg.h ../Common/inc/logger.h
+	cc -c ./src/drmsg.c -o ./obj/drmsg.o
 
 #
 # =======================================================
