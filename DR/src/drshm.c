@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include "../../Common/inc/mlstruct.h"
 #include "../../Common/inc/common.h"
+#include "../../Common/inc/logger.h"
 
 /* CONSTANTS */
 #define SHM_NOT_FOUND -1
@@ -48,10 +49,37 @@ MasterList* getML()
             
             if(DEBUG == 1)
             {
+                logError("Master list memory block creation failure");
                 printf("mlptr = %lX\n",(long)mlptr);
             }
         }
     }
 
     return mlptr;
+}
+
+/*
+* FUNCTION      : deleteDC()
+* DESCRIPTION   : Deletes a DC from array and rearranges array
+* PARAMETERS    : DCInfo dc[MAX_DC_ROLES] 
+*               : int numberOfDCs
+*               : int dcToDelete
+* RETURNS       : int retCode | 0 for success, -1 for failure
+*/
+int deleteDC(DCInfo dc[], int numberOfDCs, int dcToDelete)
+{
+    if(dcToDelete < 0 || dcToDelete > numberOfDCs)
+    {
+        logError("Invalid DC selected for deletion");
+        return -1;
+    }
+    else
+    {
+        for(int i = dcToDelete - 1; i < numberOfDCs - 1; i++)
+        {
+            dc[i] = dc[i + 1];
+        }
+        numberOfDCs--;
+        return 0;
+    }
 }

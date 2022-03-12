@@ -5,6 +5,7 @@
 * FIRST VER.: 	2022-03-09
 * DESCRIPTION:	Logger functions for Hoochamacallit System
 */
+
 /* DEPENDENCIES */
 #include <time.h>
 #include <stdio.h>
@@ -14,6 +15,7 @@
 #define LOG_PATH_DC "/tmp/dataCreator.log"
 #define LOG_PATH_DM "/tmp/dataMonitor.log"
 #define LOG_PATH_DX "/tmp/dataCorruptor.log"
+#define LOG_PATH_ERROR "/tmp/error.log"
 #define MSG_BUFFER_SIZE 128
 #define MSG_STATUS_BUFFER_SIZE 64
 #define MAX_STATUS 7
@@ -27,6 +29,36 @@ typedef struct {
         "Machine is Off-line"
     };
 }MsgStatus;
+
+/*
+* FUNCTION      : logError()
+* DESCRIPTION   : Creates an Error log
+* PARAMETERS    : char* eventMsg | Event message string
+* RETURNS       : NA
+*/
+void logError(const char* eventMsg)
+{
+    MsgStatus msgStatus;
+    char logMsg[MSG_BUFFER_SIZE];
+
+    time_t time_ptr;
+    time(&time_ptr);
+    char* logTime = asctime(localtime(&time_ptr));
+    
+    // Create log message
+    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : ERROR - %s ", logTime, eventMsg);
+
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_ERROR, "a");
+    if(fp == NULL)
+    {
+        printf("error.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
+}
 
 /*
 * FUNCTION      : logDC()
@@ -45,6 +77,17 @@ void logDC(msg msgSent)
     char* logTime = asctime(localtime(&time_ptr));
     
     snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC [%d] - MSG SENT - Status %d (%s)", logTime, msgSent.pid, msgSent.status, msgStatus.discription[msgSent.status]);
+
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_DC, "a");
+    if(fp == NULL)
+    {
+        printf("error.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
 }
 
 /*
@@ -54,7 +97,7 @@ void logDC(msg msgSent)
 *               : char* eventMsg | Event message string
 * RETURNS       : NA
 */
-void logDR(msg msgSent, const char* eventMsg)
+void logDR(msg msgSent, const char* eventMsg, const char* eventType)
 {
     MsgStatus msgStatus;
     char logMsg[MSG_BUFFER_SIZE];
@@ -64,5 +107,46 @@ void logDR(msg msgSent, const char* eventMsg)
 
     char* logTime = asctime(localtime(&time_ptr));
     
-    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC-[%2d] [%d] %s - MSG RECEIVED - Status %d (%s)", msgSent.status, logTime, msgSent.pid, eventMsg , msgSent.status, msgStatus.discription[msgSent.status]);
+    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : DC-[%2d] [%d] %s - %s - Status %d (%s)", logTime, msgSent.status, msgSent.pid, eventMsg, eventType, msgSent.status, msgStatus.discription[msgSent.status]);
+    
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_DM, "a");
+    if(fp == NULL)
+    {
+        printf("error.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
+}
+
+/*
+* FUNCTION      : logDRTerminate()
+* DESCRIPTION   : Creates a DR termination log
+* PARAMETERS    : NA
+* RETURNS       : NA
+*/
+void logDRTerminate()
+{
+    MsgStatus msgStatus;
+    char logMsg[MSG_BUFFER_SIZE];
+
+    time_t time_ptr;
+    time(&time_ptr);
+
+    char* logTime = asctime(localtime(&time_ptr));
+    
+    snprintf(logMsg, MSG_BUFFER_SIZE, "[%s] : All DCs have gone offline or terminated - DR TERMINATING", logTime);
+    
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_DM, "a");
+    if(fp == NULL)
+    {
+        printf("error.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
 }
