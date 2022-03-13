@@ -14,8 +14,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#define SLEEP_MIN 10
-#define SLEEP_MAX 30
 
 void randSleep();
 

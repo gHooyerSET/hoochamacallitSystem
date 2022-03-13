@@ -11,6 +11,9 @@
 #define MSG_OPRTR_ERR 5
 #define MSG_MCHN_OFFLN 6
 
+#define SLEEP_MIN 10
+#define SLEEP_MAX 30
+
 #define DC01 0
 #define DC02 1
 #define DC03 2

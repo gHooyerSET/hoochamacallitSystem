@@ -61,7 +61,7 @@ void sendOKMsg(int msgQueueID)
 
     msgSize = getMsgSize();
 
-    if (!msgsnd(msgQueueID, &m, msgSize, 0))
+    if (msgsnd(msgQueueID, &m, msgSize, 0) != 0)
     {
         if (DEBUG)
         {
@@ -83,6 +83,7 @@ void sendRandMsgStart(int msgQueueID)
 {
     int status = 0;
     int msgSize = 0;
+    int sleepTime = 0;
 
     msg m;
     m.pid = getpid();
@@ -100,11 +101,11 @@ void sendRandMsgStart(int msgQueueID)
         // Set the message status
         m.status = status;
         // Attempt to send the message to the queue
-        if (!msgsnd(msgQueueID, &m, msgSize, 0))
+        if (msgsnd(msgQueueID, &m, msgSize, 0) != 0)
         {
             if (DEBUG)
             {
-                printf("OK Message failed to send.\n");
+                printf("Random message failed to send.\n");
             }
         }
         // If the offline message was sent, break the loop.
@@ -112,9 +113,18 @@ void sendRandMsgStart(int msgQueueID)
         {
             if (DEBUG)
             {
-                printf("random message sent.\n");
-            }
+                printf("Random message sent : QueueID: %d. MSG Code: %d\n", msgQueueID,m.status);
             break;
+            }
+        }
+        else
+        {
+            sleepTime = (rand() % (SLEEP_MAX - SLEEP_MIN) + SLEEP_MIN);
+            if(DEBUG)
+            {
+            	printf("Sleeping for %d(s)\n",sleepTime);
+	    }
+            sleep(sleepTime);
         }
     }
 }

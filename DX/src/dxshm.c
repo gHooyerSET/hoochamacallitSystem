@@ -23,7 +23,7 @@
 #define SHM_NOT_FOUND -1
 #define SHM_FLAG 0
 #define MAX_ATTEMPTS 100
-#define SLEEP_TIME 0.1
+#define SLEEP_TIME 10
 
 #define WOD_MIN 0
 #define WOD_MAX 20
