@@ -76,21 +76,28 @@ fflush (stdout);
        sleep(SLEEP_TIME);
 
 #if defined DEBUG
-printf("Waiting to receive msg");
+printf("Waiting to receive msg\n");
 fflush (stdout);
 #endif
         // Receive message
-        msgrcv(queueID, &msg, msgSize, 0, 0);
+        msgrcv(queueID, &msg, msgSize, 1, 0);
+
+        int numOfDCs = mlptr->numberOfDCs;
+        
+#if defined DEBUG
+printf("DCs in ML: %d\n", numOfDCs);
+fflush (stdout);
+#endif
 
 #if defined DEBUG
-printf("Received message from");
+printf("Received message\n");
 //printf("Received message from %d", msg.pid);
 fflush (stdout);
 #endif
 
         // Check ML, does machineID exist?
         bool mid_exists = false;
-        for(int i = 0; i < mlptr->numberOfDCs; i++)
+        for(int i = 0; i < numOfDCs; i++)
         {
             // If it exists update entry
             if(msg.pid == mlptr->dc[i].dcProcessID)
@@ -114,12 +121,6 @@ fflush (stdout);
             {
                 // Log error
                 logError("DC number overflow");
-
-#if defined DEBUG
-printf("DC number overflow");
-fflush (stdout);
-#endif
-
             }
             else
             {
@@ -134,7 +135,8 @@ fflush (stdout);
                 logDR(msg, "added to the master list", "NEW DC");
 
 #if defined DEBUG
-printf("DC number overflow");
+printf("added to the master list");
+printf("DCs in ML: %d\n", numOfDCs);
 fflush (stdout);
 #endif
 

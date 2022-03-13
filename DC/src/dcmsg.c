@@ -61,7 +61,14 @@ void sendOKMsg(int msgQueueID)
 
     msgSize = getMsgSize();
 
-    if (!msgsnd(msgQueueID, &m, msgSize, 0))
+    int sendReturnValue = msgsnd(msgQueueID, &m, msgSize, 0);
+
+#if defined DEBUG
+printf("Send return valie %d\n", sendReturnValue);
+fflush (stdout);
+
+#endif
+    if (!sendReturnValue)
     {
         if (DEBUG)
         {
