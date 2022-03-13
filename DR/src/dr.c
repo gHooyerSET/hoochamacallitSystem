@@ -67,7 +67,7 @@ int i = 0;
 printf("Looping: %d\n", i++);
 fflush (stdout);
 #endif
-
+	printf("Sleeping for %d(s)",SLEEP_TIME);
         // Sleep 15s
         sleep(SLEEP_TIME);
 
@@ -187,7 +187,6 @@ fflush (stdout);
             // Remove queue and free memory
             msgctl(queueID, IPC_RMID, (struct msqid_ds *)NULL);
             shmdt (mlptr);
-            return 0;
         }
     }
     return 0;
