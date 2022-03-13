@@ -18,7 +18,7 @@ int main()
 printf("Sending rand");
 fflush (stdout);
 #endif
-    getc(stdin);
+
     // Then start sending random messages (will exit on Offline being sent)
     sendRandMsgStart(msgQueueID);
 
