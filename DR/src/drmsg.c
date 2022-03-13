@@ -54,7 +54,7 @@ int get_mid(key_t message_key)
             logError("mid creation error");
         } 
     }
-    else
+    /*else
     {
         // Delete and create one
         msgctl (mid, IPC_RMID, NULL);
@@ -63,7 +63,7 @@ int get_mid(key_t message_key)
         { 
             logError("mid creation error");
         } 
-    }
+    }*/
 
     return mid;
 }

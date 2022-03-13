@@ -13,6 +13,7 @@ typedef struct
 
 typedef struct
 {
+    long type;
     int msgQueueID;
     int numberOfDCs;
     DCInfo dc[MAX_DC_ROLES];
