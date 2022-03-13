@@ -50,6 +50,7 @@
 ] : DC-[ 4] [4070] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sat Mar 12 21:13:03 2022
 ] : DC-[ 3] [4070] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sat Mar 12 21:13:04 2022
 ] : DC-[ 1] [4070] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sat Mar 12 21:13:05 2022
+<<<<<<< HEAD
 ] : DC-[ 1] [4070] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 11:21:29 2022
 ] : DC-[ 0] [8125] added to the master list - NEW DC - Status 0 (Everything is OKAY)[Sun Mar 13 11:21:30 2022
 ] : DC-[ 2] [8125] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 11:21:31 2022
@@ -143,3 +144,70 @@
 ] : DC-[ 0] [8758] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 11:56:20 2022
 ] : DC-[ 0] [8758] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 11:56:21 2022
 ] : DC-[ 0] [8758] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)
+=======
+] : DC-[ 1] [4070] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:42:41 2022
+] : DC-[ 0] [2718] added to the master list - NEW DC - Status 0 (Everything is OKAY)[Sun Mar 13 14:42:43 2022
+] : DC-[ 1] [2718] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:42:45 2022
+] : DC-[ 4] [2718] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:42:47 2022
+] : DC-[ 5] [2718] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:42:49 2022
+] : DC-[ 4] [2718] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:42:51 2022
+] : DC-[ 5] [2718] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:42:53 2022
+] : DC-[ 5] [2718] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:42:55 2022
+] : DC-[ 5] [2718] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:42:58 2022
+] : DC-[ 3] [2718] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:43:00 2022
+] : DC-[ 1] [2718] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:43:02 2022
+] : DC-[ 3] [2718] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:43:04 2022
+] : DC-[ 0] [2718] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:43:06 2022
+] : DC-[ 3] [2718] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:43:08 2022
+] : DC-[ 3] [2718] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:43:10 2022
+] : DC-[ 3] [2718] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:48:50 2022
+] : DC-[ 0] [2781] added to the master list - NEW DC - Status 0 (Everything is OKAY)[Sun Mar 13 14:48:52 2022
+] : DC-[ 5] [2781] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:48:54 2022
+] : DC-[ 3] [2781] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:48:56 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:48:58 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:00 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:02 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:04 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:49:06 2022
+] : DC-[ 0] [2781] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:49:08 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:10 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:49:12 2022
+] : DC-[ 3] [2781] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:49:14 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:16 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:18 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:20 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:22 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:24 2022
+] : DC-[ 0] [2781] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:49:26 2022
+] : DC-[ 5] [2781] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:49:28 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:49:30 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:32 2022
+] : DC-[ 3] [2781] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:49:34 2022
+] : DC-[ 0] [2781] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:49:36 2022
+] : DC-[ 3] [2781] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:49:38 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:40 2022
+] : DC-[ 1] [2781] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:49:42 2022
+] : DC-[ 5] [2781] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:49:44 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:46 2022
+] : DC-[ 0] [2781] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:49:48 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:49:50 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:52 2022
+] : DC-[ 4] [2781] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:49:54 2022
+] : DC-[ 2] [2781] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:51:11 2022
+] : DC-[ 0] [2819] added to the master list - NEW DC - Status 0 (Everything is OKAY)[Sun Mar 13 14:51:13 2022
+] : DC-[ 2] [2819] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:51:40 2022
+] : DC-[ 2] [2819] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:51:56 2022
+] : DC-[ 2] [2819] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:52:06 2022
+] : DC-[ 2] [2819] updated in the master list - MSG RECEIVED - Status 2 (Safety Button Failure)[Sun Mar 13 14:52:29 2022
+] : DC-[ 5] [2819] updated in the master list - MSG RECEIVED - Status 5 (Operator Error)[Sun Mar 13 14:52:42 2022
+] : DC-[ 1] [2819] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:52:58 2022
+] : DC-[ 4] [2819] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:53:09 2022
+] : DC-[ 1] [2819] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:53:33 2022
+] : DC-[ 0] [2819] updated in the master list - MSG RECEIVED - Status 0 (Everything is OKAY)[Sun Mar 13 14:53:58 2022
+] : DC-[ 4] [2819] updated in the master list - MSG RECEIVED - Status 4 (Operating Temperature Out of[Sun Mar 13 14:54:27 2022
+] : DC-[ 1] [2819] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:54:38 2022
+] : DC-[ 3] [2819] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:54:59 2022
+] : DC-[ 1] [2819] updated in the master list - MSG RECEIVED - Status 1 (Hydraulic Pressure Failure)[Sun Mar 13 14:55:25 2022
+] : DC-[ 3] [2819] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce[Sun Mar 13 14:55:45 2022
+] : DC-[ 3] [2819] updated in the master list - MSG RECEIVED - Status 3 (No Raw Material in the Proce
+>>>>>>> bca29c9cceb5b8e95916e83587402980bb00c8e0

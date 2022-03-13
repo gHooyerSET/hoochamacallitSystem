@@ -79,6 +79,8 @@ fflush (stdout);
 printf("Waiting to receive msg\n");
 fflush (stdout);
 #endif
+        // Sleep 15s
+        sleep(SLEEP_TIME);
         // Receive message
         msgrcv(queueID, &msg, msgSize, 1, 0);
 
@@ -199,7 +201,6 @@ fflush (stdout);
             // Remove queue and free memory
             msgctl(queueID, IPC_RMID, (struct msqid_ds *)NULL);
             shmdt (mlptr);
-            return 0;
         }
     }
     return 0;
