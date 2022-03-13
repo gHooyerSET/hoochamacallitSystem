@@ -1,3 +1,10 @@
+/*
+ * FILE: 	dc.c
+ * PROJECT: 	Hoochamacallit System - A3
+ * PROGRAMMER: 	Gerritt Hooyer
+ * FIRST VER.: 	2022-03-07
+ * DESCRIPTION:	The main body for the DC.
+ */
 #include "../inc/dcmsg.h"
 #include <unistd.h>
 #include <stdio.h>
@@ -21,7 +28,6 @@ fflush (stdout);
 
     // Then start sending random messages (will exit on Offline being sent)
     sendRandMsgStart(msgQueueID);
-
     // Exit
     return 0;
 }

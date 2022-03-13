@@ -6,7 +6,6 @@
 * DESCRIPTION:	The body of main() in the dr portion
 *		of the hoochamacallit system.
 */
-#define DEBUG 1
 
 /* DEPENDENCIES */
 #include "../inc/drshm.h"

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# FILE : makeall
+# PROJECT : 
+# PROGRAMMER : Nathan Domingo & Gerritt Hooyer
+# FIRST VER: 2022-03-07
+# DESCRIPTION : Makes all of the subprojects and copies the DX to
+#               the correct directory.
+
+
 make -C ./DC/
 make -C ./DR/
 make -C ./DX/

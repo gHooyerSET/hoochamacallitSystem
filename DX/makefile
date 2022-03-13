@@ -1,3 +1,10 @@
+# FILE : makefile
+# PROJECT : 
+# PROGRAMMER : Nathan Domingo & Gerritt Hooyer
+# FIRST VER: 2022-03-07
+# DESCRIPTION : The makefile for the DX.
+
+
 #
 # this makefile will compile and and all source
 # found in the "dx" directory.  This represents a sample

@@ -1,3 +1,12 @@
+/*
+* FILE: 	mlstruct.h
+* PROJECT: 	Hoochamacallit System - A3
+* PROGRAMMER: 	Gerritt Hooyer and Nathan Domingo
+* FIRST VER.: 	2022-03-09
+* DESCRIPTION:	Structs related to the function of the system.
+*/
+#ifndef MLSTRUCT_H_
+#define MLSTRUCT_H_
 /* DEPENDENCIES */
 #include <time.h>
 
@@ -18,3 +27,4 @@ typedef struct
     int numberOfDCs;
     DCInfo dc[MAX_DC_ROLES];
 } MasterList;
+#endif

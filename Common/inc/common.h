@@ -1,3 +1,5 @@
+#ifndef COMMON_H_
+#define COMMON_H_
 /* CONSTANTS */
 #define DEBUG 1
 #define IPC_ID 16534
@@ -39,3 +41,4 @@ typedef struct
     char* logMsg;
 } logEntry;*/
 
+#endif
