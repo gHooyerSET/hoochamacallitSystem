@@ -55,13 +55,13 @@ void sendOKMsg(int msgQueueID)
 {
     msg m;
     int msgSize = 0;
-    m.msgType = 0;
+    m.type = 1;
     m.status = MSG_OK;
     m.pid = getpid();
 
     msgSize = getMsgSize();
 
-    if (!msgsnd(msgQueueID, (void *)&m, msgSize, 0))
+    if (!msgsnd(msgQueueID, &m, msgSize, 0))
     {
         if (DEBUG)
         {
@@ -73,7 +73,7 @@ void sendOKMsg(int msgQueueID)
     {
         if (DEBUG)
         {
-            printf("OK Message sent.\n");
+            printf("OK Message sent : QueueID: %d.\n", msgQueueID);
             fflush (stdout);
         }
     }
@@ -86,7 +86,7 @@ void sendRandMsgStart(int msgQueueID)
 
     msg m;
     m.pid = getpid();
-    m.msgType = 0;
+    m.type = 1;
 
     // Get the message size
     msgSize = getMsgSize();
@@ -100,7 +100,7 @@ void sendRandMsgStart(int msgQueueID)
         // Set the message status
         m.status = status;
         // Attempt to send the message to the queue
-        if (!msgsnd(msgQueueID, (void *)&m, msgSize, 0))
+        if (!msgsnd(msgQueueID, &m, msgSize, 0))
         {
             if (DEBUG)
             {

@@ -1,8 +1,8 @@
 /* CONSTANTS */
 #define DEBUG 1
-#define IPC_ID 16535
+#define IPC_ID 16534
 #define MSG_QUEUE_NOT_FOUND -1
-#define MSG_QUEUE_PATH "../../tmp"
+#define MSG_QUEUE_PATH "/tmp"
 #define MSG_OK 0
 #define MSG_HYDR_PRS_FAIL 1
 #define MSG_SFTY_BTN_FAIL 2
@@ -25,7 +25,7 @@
 /* DEFINITIONS */
 typedef struct 
 {
-    long msgType;
+    long type;
     int status;
     pid_t pid;
 } msg;

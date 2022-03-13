@@ -22,7 +22,7 @@
 #include <sys/shm.h>
 
 /* CONSTANTS */
-#define SLEEP_TIME 2
+#define SLEEP_TIME 1
 #define LAST_HEARD_CUTOFF_TIME 35
 
 int main()
@@ -45,13 +45,25 @@ printf("message queue ID %d\n", queueID);
 fflush (stdout);
 #endif
 
+#if defined DEBUG
+printf("mlptr = getML()");
+fflush (stdout);
+#endif
+
     // Create Master List
     mlptr = getML();
+
+#if defined DEBUG
+printf("%p\n", mlptr);
+fflush (stdout);
+#endif
+
     if(mlptr == NULL)
     {
 
 #if defined DEBUG
 printf("Master list error\n");
+fflush (stdout);
 #endif
         //Error
         logError("Master list error");
@@ -60,22 +72,20 @@ printf("Master list error\n");
     /******************************** Main loop ********************************/
     while(true)
     {
+        // Sleep 15s
+       sleep(SLEEP_TIME);
 
 #if defined DEBUG
-logError("Start looping\n");
-int i = 0;
-printf("Looping: %d\n", i++);
+printf("Waiting to receive msg");
 fflush (stdout);
 #endif
-
-        // Sleep 15s
-        sleep(SLEEP_TIME);
-
         // Receive message
-        msgrcv(queueID, &msg, msgSize, 1, 0);
+        msgrcv(queueID, &msg, msgSize, 0, 0);
 
 #if defined DEBUG
-printf("Received message from %d", msg.pid);
+printf("Received message from");
+//printf("Received message from %d", msg.pid);
+fflush (stdout);
 #endif
 
         // Check ML, does machineID exist?
