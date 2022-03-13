@@ -1,3 +1,5 @@
+#ifndef LOGGER_H_
+#define LOGGER_H_
 /*
 * FILE: 	logger.h
 * PROJECT: 	Hoochamacallit System - A3
@@ -212,3 +214,4 @@ static void logDXMsg(const char* msgText)
 
     fclose(fp);
 }
+#endif

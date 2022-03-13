@@ -263,7 +263,7 @@ void wodAction(int actionID, MasterList *mlptr)
  *                 for the master list.
  * RETURNS       : N/A
  */
-void wheelOfDestruction(MasterList *mlptr, int msgQueueID)
+void wheelOfDestruction(MasterList *mlptr)
 {
     int actionID = -1;
     int msgQueueID = MSG_QUEUE_NOT_FOUND;

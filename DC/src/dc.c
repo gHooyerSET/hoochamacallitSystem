@@ -28,7 +28,6 @@ fflush (stdout);
 
     // Then start sending random messages (will exit on Offline being sent)
     sendRandMsgStart(msgQueueID);
-
     // Exit
     return 0;
 }
