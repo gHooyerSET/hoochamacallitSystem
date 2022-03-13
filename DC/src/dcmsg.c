@@ -1,3 +1,10 @@
+/*
+ * FILE: 	dcmsg.c
+ * PROJECT: 	Hoochamacallit System - A3
+ * PROGRAMMER: 	Gerritt Hooyer
+ * FIRST VER.: 	2022-03-07
+ * DESCRIPTION:	The functions related to the MsgQ for the DC.
+ */
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -6,9 +13,16 @@
 #include <time.h>
 #include <stdlib.h>
 #include "../../Common/inc/common.h"
+#include "../../Common/inc/logger.h"
 
 #define SLEEP_TIME 10
 
+/*
+ * FUNCTION      : getMsgQueue()
+ * DESCRIPTION   : Sends the OK message.
+ * PARAMETERS    : N/A
+ * RETURNS       : int msgQueueID | The ID of the msg q
+ */
 int getMsgQueue()
 {
     int msgQueueID = 0;
@@ -30,11 +44,10 @@ int getMsgQueue()
             }
             else
             {
-                if (DEBUG)
-                {
-                    printf("Message Queue Not Found\nSleeping for %d(s)\n", SLEEP_TIME);
-                    fflush (stdout);
-                }
+#if defined DEBUG
+                printf("Message Queue Not Found\nSleeping for %d(s)\n", SLEEP_TIME);
+                fflush(stdout);
+#endif
                 // Otherwise, we sleep for 10 s
                 sleep(SLEEP_TIME);
             }
@@ -44,47 +57,67 @@ int getMsgQueue()
     return msgQueueID;
 }
 
-
+/*
+ * FUNCTION      : getMsgSize()
+ * DESCRIPTION   : Sends the OK message.
+ * PARAMETERS    : N/A
+ * RETURNS       : int msgSize | The size of the msg struct - size of long
+ */
 int getMsgSize()
 {
     int msgSize = sizeof(msg) - sizeof(long);
     return msgSize;
 }
 
+/*
+ * FUNCTION      : sendOKMsg(int msgQueueID)
+ * DESCRIPTION   : Sends the OK message.
+ * PARAMETERS    : int msgQueueID | The ID for the msg q
+ * RETURNS       : N/A
+ */
 void sendOKMsg(int msgQueueID)
 {
+    // Declare our variables
     msg m;
     int msgSize = 0;
+    // Set the message contents
     m.type = 1;
     m.status = MSG_OK;
     m.pid = getpid();
-
+    // Get the size of the msg
     msgSize = getMsgSize();
-
+    // Attempt to send to the message.
     if (msgsnd(msgQueueID, &m, msgSize, 0) != 0)
     {
-        if (DEBUG)
-        {
-            printf("OK Message failed to send.\n");
-            fflush (stdout);
-        }
+#if defined DEBUG
+        printf("OK Message failed to send.\n");
+        fflush(stdout);
+#endif
     }
     else
     {
-        if (DEBUG)
-        {
-            printf("OK Message sent : QueueID: %d.\n", msgQueueID);
-            fflush (stdout);
-        }
+#if defined DEBUG
+        printf("OK Message sent : QueueID: %d.\n", msgQueueID);
+        fflush(stdout);
+#endif
+        // Create the log entry
+        logDC(m);
     }
 }
 
+/*
+ * FUNCTION      : sendRandMsgStart(int msgQueueID)
+ * DESCRIPTION   : Sends a random message.
+ * PARAMETERS    : int msgQueueID | The ID for the msg q
+ * RETURNS       : N/A
+ */
 void sendRandMsgStart(int msgQueueID)
 {
+    // Declare our variables
     int status = 0;
     int msgSize = 0;
     int sleepTime = 0;
-
+    // Set the message contents
     msg m;
     m.pid = getpid();
     m.type = 1;
@@ -92,6 +125,7 @@ void sendRandMsgStart(int msgQueueID)
     // Get the message size
     msgSize = getMsgSize();
 
+    // Seed the RNG
     srand(time(NULL));
 
     while (1)
@@ -103,29 +137,30 @@ void sendRandMsgStart(int msgQueueID)
         // Attempt to send the message to the queue
         if (msgsnd(msgQueueID, &m, msgSize, 0) != 0)
         {
-            if (DEBUG)
-            {
-                printf("Random message failed to send.\n");
-            }
+#if defined DEBUG
+            printf("Random message failed to send.\n");
+#endif
+        }
+        else
+        {
+            // Create the log entry
+            logDC(m);
         }
         // If the offline message was sent, break the loop.
         if (status == MSG_MCHN_OFFLN)
         {
-            if (DEBUG)
-            {
-                printf("Random message sent : QueueID: %d. MSG Code: %d\n", msgQueueID,m.status);
+#if defined DEBUG
+            printf("Random message sent : QueueID: %d. MSG Code: %d\n", msgQueueID, m.status);
+#endif
             break;
-            }
         }
         else
         {
             sleepTime = (rand() % (SLEEP_MAX - SLEEP_MIN) + SLEEP_MIN);
-            if(DEBUG)
-            {
-            	printf("Sleeping for %d(s)\n",sleepTime);
-	    }
+#if defined DEBUG
+            printf("Sleeping for %d(s)\n", sleepTime);
+#endif
             sleep(sleepTime);
         }
     }
 }
-

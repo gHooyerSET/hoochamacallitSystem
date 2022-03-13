@@ -10,6 +10,7 @@
 #include <time.h>
 #include <stdio.h>
 #include "./common.h"
+#include "./mlstruct.h"
 
 /* CONSTANTS */
 #define LOG_PATH_DC "../../tmp/dataCreator.log"
@@ -143,6 +144,69 @@ static void logDRTerminate()
     if(fp == NULL)
     {
         printf("error.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
+}
+
+/*
+* FUNCTION      : logDX()
+* DESCRIPTION   : Creates a DX log
+* PARAMETERS    : DCInfo dc | The data creator being terminated
+*               : int actionID | The action ID
+*               : int dcID | The ID of the data creator
+* RETURNS       : NA
+*/
+static void logDX(DCInfo* dc, int actionID, int dcID)
+{
+    char logMsg[MSG_BUFFER_SIZE];
+
+    time_t time_ptr;
+    time(&time_ptr);
+
+    char* logTime = asctime(localtime(&time_ptr));
+
+    // Create the log message
+    sprintf(logMsg,"[%s] : WOD Action %2d - DC-%2d [%d] TERMINATED",logTime,actionID,dcID,dc->dcProcessID);
+    
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_DX, "a");
+    if(fp == NULL)
+    {
+        printf("dataCorruptor.log could not be opened");
+    }
+    fprintf(fp, "%s", logMsg);
+
+    fclose(fp);
+}
+
+/*
+* FUNCTION      : logDR()
+* DESCRIPTION   : Creates a DR log
+* PARAMETERS    : msg msgSent | Message info
+*               : char* eventMsg | Event message string
+* RETURNS       : NA
+*/
+static void logDXMsg(const char* msgText)
+{
+    char logMsg[MSG_BUFFER_SIZE];
+
+    time_t time_ptr;
+    time(&time_ptr);
+
+    char* logTime = asctime(localtime(&time_ptr));
+
+    // Create the log message
+    sprintf(logMsg,"[%s] : %s",logTime,msgText);
+    
+    // Write to file
+    FILE* fp;
+    fp = fopen(LOG_PATH_DX, "a");
+    if(fp == NULL)
+    {
+        printf("dataCorruptor.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
