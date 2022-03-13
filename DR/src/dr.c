@@ -76,22 +76,30 @@ fflush (stdout);
        sleep(SLEEP_TIME);
 
 #if defined DEBUG
-printf("Waiting to receive msg");
+printf("Waiting to receive msg\n");
 fflush (stdout);
 #endif
         // Sleep 15s
         sleep(SLEEP_TIME);
         // Receive message
-        msgrcv(queueID, &msg, msgSize, 0, 0);
+        msgrcv(queueID, &msg, msgSize, 1, 0);
+
+        int numOfDCs = mlptr->numberOfDCs;
+        
 #if defined DEBUG
-printf("Received message from");
+printf("DCs in ML: %d\n", numOfDCs);
+fflush (stdout);
+#endif
+
+#if defined DEBUG
+printf("Received message\n");
 //printf("Received message from %d", msg.pid);
 fflush (stdout);
 #endif
 
         // Check ML, does machineID exist?
         bool mid_exists = false;
-        for(int i = 0; i < mlptr->numberOfDCs; i++)
+        for(int i = 0; i < numOfDCs; i++)
         {
             // If it exists update entry
             if(msg.pid == mlptr->dc[i].dcProcessID)
@@ -101,7 +109,7 @@ fflush (stdout);
                 logDR(msg, "updated in the master list", "MSG RECEIVED");
 
 #if defined DEBUG
-printf("updated in the master list");
+printf("updated in the master list\n");
 fflush (stdout);
 #endif
 
@@ -115,12 +123,6 @@ fflush (stdout);
             {
                 // Log error
                 logError("DC number overflow");
-
-#if defined DEBUG
-printf("DC number overflow");
-fflush (stdout);
-#endif
-
             }
             else
             {
@@ -135,7 +137,8 @@ fflush (stdout);
                 logDR(msg, "added to the master list", "NEW DC");
 
 #if defined DEBUG
-printf("DC number overflow");
+printf("added to the master list\n");
+printf("DCs in ML: %d\n", numOfDCs);
 fflush (stdout);
 #endif
 
@@ -157,7 +160,7 @@ fflush (stdout);
                     logDR(msg, "has gone OFFLINE", "Removing from master-list");
 
 #if defined DEBUG
-printf("Removing from master-list");
+printf("Removing from master-list\n");
 fflush (stdout);
 #endif
 
@@ -169,7 +172,14 @@ fflush (stdout);
         // Find DC index
         for(int i = 0; i < mlptr->numberOfDCs; i++)
         {
-            if((mlptr->dc[i].lastTimeHeardFrom - time(&time_ptr)) >= LAST_HEARD_CUTOFF_TIME)
+            int lastHeardTime = time(&time_ptr) - mlptr->dc[i].lastTimeHeardFrom;
+
+#if defined DEBUG
+printf("id = %d lastHeardTime: %d\n", mlptr->dc[i].dcProcessID, lastHeardTime);
+fflush (stdout);
+#endif
+
+            if(lastHeardTime >= LAST_HEARD_CUTOFF_TIME)
             {
                 // Delete DC
                 DCInfo* newDCArray = mlptr->dc;
@@ -178,7 +188,7 @@ fflush (stdout);
                 logDR(msg, "has gone OFFLINE", "Removing from master-list");
 
 #if defined DEBUG
-printf("Removing from master-list");
+printf("Removing from master-list\n");
 fflush (stdout);
 #endif
 

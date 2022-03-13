@@ -39,7 +39,7 @@ printf("ML Start\n");
 
 
     MasterList* mlptr = NULL;
-    key_t shmKey = ftok(".", 'A');
+    key_t shmKey = ftok(".", 16535);
     int attempts = 0;
     int shmid = SHM_NOT_FOUND;
 
