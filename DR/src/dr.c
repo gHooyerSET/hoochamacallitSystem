@@ -188,7 +188,7 @@ fflush (stdout);
                 logDR(msg, "has gone OFFLINE", "Removing from master-list");
 
 #if defined DEBUG
-printf("Removing from master-list\n");
+printf("Removing id = %d  from master-list\n", mlptr->dc[i].dcProcessID);
 fflush (stdout);
 #endif
 
@@ -206,8 +206,9 @@ fflush (stdout);
 
             logDRTerminate();
             // Remove queue and free memory
-            msgctl(queueID, IPC_RMID, (struct msqid_ds *)NULL);
+            msgctl(queueID, IPC_RMID, NULL);
             shmdt (mlptr);
+            return 0;
         }
     }
     return 0;
