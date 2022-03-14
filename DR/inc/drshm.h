@@ -11,4 +11,4 @@
 
 /* PROTOTYPES */
 MasterList* getML();
-int deleteDC(DCInfo dc[], int numberOfDCs, int dcToDelete);
+int deleteDC(MasterList* ml, int dcToDelete);

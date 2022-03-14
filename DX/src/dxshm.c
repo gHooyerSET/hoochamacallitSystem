@@ -129,7 +129,7 @@ void killDC(DCInfo *dc)
             kill(dc->dcProcessID, SIGKILL);
         }
         // Then set DC to NULL
-        dc = NULL;
+        dc=NULL;
     }
     else
     {

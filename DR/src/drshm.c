@@ -77,25 +77,23 @@ printf("ML Created\n");
 /*
 * FUNCTION      : deleteDC()
 * DESCRIPTION   : Deletes a DC from array and rearranges array
-* PARAMETERS    : DCInfo dc[MAX_DC_ROLES] 
-*               : int numberOfDCs
+* PARAMETERS    : DMasterList* ml
 *               : int dcToDelete
 * RETURNS       : int retCode | 0 for success, -1 for failure
 */
-int deleteDC(DCInfo dc[], int numberOfDCs, int dcToDelete)
+int deleteDC(MasterList* ml, int dcToDelete)
 {
-    if(dcToDelete < 0 || dcToDelete > numberOfDCs)
+    if(dcToDelete < 0 || dcToDelete > ml->numberOfDCs)
     {
         logError("Invalid DC selected for deletion");
         return -1;
     }
     else
     {
-        for(int i = dcToDelete - 1; i < numberOfDCs - 1; i++)
+        for(int i = dcToDelete; i < ml->numberOfDCs; i++)
         {
-            dc[i] = dc[i + 1];
+            ml->dc[i] = ml->dc[i + 1];
         }
-        numberOfDCs--;
         return 0;
     }
 }

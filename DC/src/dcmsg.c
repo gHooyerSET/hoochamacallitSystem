@@ -97,7 +97,7 @@ void sendOKMsg(int msgQueueID)
     else
     {
 #if defined DEBUG
-        printf("OK Message sent : QueueID: %d.\n", msgQueueID);
+        printf("OK Message sent : QueueID: %d PID : %d.\n", msgQueueID, m.pid);
         fflush(stdout);
 #endif
         // Create the log entry
@@ -131,7 +131,7 @@ void sendRandMsgStart(int msgQueueID)
     while (1)
     {
         // Generate the message status
-        status = (rand() % (MSG_OK - MSG_MCHN_OFFLN) + MSG_OK);
+        status = (rand() % (MSG_MCHN_OFFLN + 1));
         // Set the message status
         m.status = status;
         // Attempt to send the message to the queue
@@ -156,7 +156,7 @@ void sendRandMsgStart(int msgQueueID)
         }
         else
         {
-            sleepTime = (rand() % (SLEEP_MAX - SLEEP_MIN) + SLEEP_MIN);
+            sleepTime = (rand() % (SLEEP_MAX + 1 - SLEEP_MIN) + SLEEP_MIN);
 #if defined DEBUG
             printf("Sleeping for %d(s)\n", sleepTime);
 #endif

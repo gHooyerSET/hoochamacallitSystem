@@ -29,6 +29,12 @@ int main()
 		// Then we can start the wheel of destruction
 		wheelOfDestruction(mlptr);
 	}
+	else
+	{
+#if defined DEBUG
+printf("ML is NULL\n");
+#endif
+	}
 	
 	// Detach from the shared memory before exiting
 	shmdt(mlptr);
