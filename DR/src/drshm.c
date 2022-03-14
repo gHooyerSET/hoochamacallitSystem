@@ -34,39 +34,22 @@
 */
 MasterList* getML()
 {
-
-printf("ML Start\n");
-
-
     MasterList* mlptr = NULL;
     key_t shmKey = ftok(".", 16535);
     int attempts = 0;
     int shmid = SHM_NOT_FOUND;
 
-#if defined DEBUG
-printf("Before ML Key Found\n");
-#endif
-
     if(shmKey != SHM_NOT_FOUND)
     {
-
-#if defined DEBUG
-printf("ML Key Found\n");
-#endif
-
         shmid = shmget(shmKey,sizeof(MasterList),(IPC_CREAT | 0660));
 
         if(shmid != SHM_NOT_FOUND)
         {
             mlptr = (MasterList *)shmat(shmid,NULL,SHM_FLAG);
             
-#if defined DEBUG
-printf("ML Created\n");
-#endif
             if(mlptr == NULL)
             {
                 logError("Master list memory block creation failure");
-                printf("mlptr = %lX\n",(long)mlptr);
             }
         }
     }

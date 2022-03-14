@@ -45,7 +45,7 @@ static void logError(const char* eventMsg)
     fp = fopen(LOG_PATH_ERROR, "a");
     if(fp == NULL)
     {
-        printf("error.log could not be opened");
+        //printf("error.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
@@ -78,7 +78,7 @@ static void logDC(msg msgSent)
     fp = fopen(LOG_PATH_DC, "a");
     if(fp == NULL)
     {
-        printf("error.log could not be opened");
+        //printf("error.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
@@ -112,7 +112,7 @@ static void logDR(msg msgSent, const char* eventMsg, const char* eventType, int 
     fp = fopen(LOG_PATH_DM, "a");
     if(fp == NULL)
     {
-        printf("error.log could not be opened");
+        //printf("error.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
@@ -139,7 +139,7 @@ static void logDRTerminate()
     fp = fopen(LOG_PATH_DM, "a");
     if(fp == NULL)
     {
-        printf("error.log could not be opened");
+        //printf("error.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
@@ -163,17 +163,13 @@ static void logDX(DCInfo* dc, int actionID, int dcID)
 
     // Create the log message
     sprintf(logMsg,"[%s] : WOD Action %2d - DC-%2d [%d] TERMINATED\n",logTime,actionID,dcID,dc->dcProcessID);
-
-#if defined DEBUG
-printf("WoD action: %s\n", logMsg);
-#endif
     
     // Write to file
     FILE* fp;
     fp = fopen(LOG_PATH_DX, "a");
     if(fp == NULL)
     {
-        printf("dataCorruptor.log could not be opened");
+        //printf("dataCorruptor.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 
@@ -202,7 +198,7 @@ static void logDXMsg(const char* msgText)
     fp = fopen(LOG_PATH_DX, "a");
     if(fp == NULL)
     {
-        printf("dataCorruptor.log could not be opened");
+        //printf("dataCorruptor.log could not be opened");
     }
     fprintf(fp, "%s", logMsg);
 

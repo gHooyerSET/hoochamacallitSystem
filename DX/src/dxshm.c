@@ -79,10 +79,6 @@ MasterList *getML()
             // Now let's check if we actually got it
             if (shmid == SHM_NOT_FOUND)
             {
-#if defined DEBUG
-                    printf("shared memory id not found : %d / %d attempts...\n", attempts, MAX_ATTEMPTS);
-                    printf("Sleeping for 10 seconds...\n");
-#endif
                 // If the ID wasn't found, we need to sleep for 10 seconds
                 sleep(SLEEP_TIME);
             }
@@ -102,9 +98,6 @@ MasterList *getML()
         if (shmid != SHM_NOT_FOUND)
         {
             mlptr = (MasterList *)shmat(shmid, NULL, SHM_FLAG);
-#if defined DEBUG
-                printf("mlptr = %lX\n", (long)mlptr);
-#endif
         }
     }
 
@@ -133,9 +126,7 @@ void killDC(DCInfo *dc)
     }
     else
     {
-#if defined DEBUG
-            printf("DC Entry not found.\n");
-#endif
+            logError("DC Entry not found.");
     }
 }
 
@@ -277,9 +268,6 @@ void wheelOfDestruction(MasterList *mlptr)
         // Then use the msgKey to check for the existance of the queue
         if ((msgQueueID = msgget(msgKey, 0)) == MSG_QUEUE_NOT_FOUND)
         {
-#if defined DEBUG
-                printf("Message queue not found.\n");
-#endif
             // Create the log entry
             logDXMsg("DX detexted that msgQ is gone = assuming DR/DCs done");
             // Exit if it's not available

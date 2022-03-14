@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/shm.h>
 
 
 void randSleep();
@@ -29,19 +31,10 @@ int main()
 		// Then we can start the wheel of destruction
 		wheelOfDestruction(mlptr);
 	}
-	else
-	{
-#if defined DEBUG
-printf("ML is NULL\n");
-#endif
-	}
 	
 	// Detach from the shared memory before exiting
 	shmdt(mlptr);
 
-#if defined DEBUG
-		printf("Exiting...\n");
-#endif
 	return 0;
 }
 
@@ -58,10 +51,6 @@ void randSleep()
 	srand(time(NULL));
 	// Then generate our random number within the range
 	int sleepTime = (rand() % (SLEEP_MAX - SLEEP_MIN) + SLEEP_MIN);
-	// Debug message, turn off via common.h
-#if defined DEBUG
-		printf("Sleeping for %d(s)\n", sleepTime);
-#endif
 	// Then sleep for that amount of time
 	sleep(sleepTime);
 }

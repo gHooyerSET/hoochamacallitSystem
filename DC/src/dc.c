@@ -21,11 +21,6 @@ int main()
     // Once attached to the message queue, send OK message
     sendOKMsg(msgQueueID);
 
-#if defined DEBUG
-printf("Sending rand");
-fflush (stdout);
-#endif
-
     // Then start sending random messages (will exit on Offline being sent)
     sendRandMsgStart(msgQueueID);
     // Exit
